@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+package "s3cmd"
+
 node[:s3cmd][:users].each do |user|   
     home = user.to_s == :root.to_s ? "/root" : "/home/#{user}"
 
