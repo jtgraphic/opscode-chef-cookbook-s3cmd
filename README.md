@@ -1,4 +1,12 @@
-opscode-chef-cookbook-s3cmd
-===========================
+Description
+===========
 
-This is a cookbook for installing s3cmd via Opscode's Chef.
+Requirements
+============
+
+Attributes
+==========
+
+Usage
+=====
+
