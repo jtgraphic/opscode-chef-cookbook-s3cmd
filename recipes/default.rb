@@ -9,6 +9,21 @@
 
 package "s3cmd"
 
+if node[:s3cmd][:data_bag]
+
+    data = data_bag_item(node[:s3cmd][:data_bag], node[:s3cmd][:data_bag_item])
+
+    if node[:s3cmd][:aws_access_key]
+        data[:aws_access_key] = data[node[:s3cmd][:aws_access_key]]
+    end
+    if node[:s3cmd][:aws_secret_key]
+        data[:aws_secret_key] = data[node[:s3cmd][:aws_secret_key]]
+    end
+
+else
+    data = node[:s3cmd]
+end
+
 node[:s3cmd][:users].each do |user|   
     home = user.to_s == :root.to_s ? "/root" : "/home/#{user}"
 
@@ -16,5 +31,6 @@ node[:s3cmd][:users].each do |user|
         path "#{home}/.s3cfg"
         source "s3cfg.erb"
         mode 0655
+        variables :credentials => data
     end
 end
