@@ -7,6 +7,8 @@
 # All rights reserved - Do Not Redistribute
 #
 
+Encoding.default_external = Encoding::UTF_8 if RUBY_VERSION > "1.9"
+
 package "s3cmd"
 
 if node[:s3cmd][:data_bag]
